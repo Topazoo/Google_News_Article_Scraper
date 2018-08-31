@@ -55,6 +55,10 @@ class Article(object):
         for sb in page.find_all("div", attrs={"class": re.compile("^sidebar*")}):
             sb.decompose()
 
+        # Remove ads
+        for ad in page.find_all("div", attrs={"class": "component"}):
+            ad.decompose()
+
         return page
 
     def get_text(self):
