@@ -127,7 +127,6 @@ class Article_Parser(object):
         self.remove_ft(html) # Footers
         self.remove_bt(html) # Buttons
         self.remove_lb(html) # Labels
-        self.remove_li(html) # List Items
 
         # Perform final formatting and get text
         text = self.format_html(html)
