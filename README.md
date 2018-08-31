@@ -6,7 +6,7 @@
 [![beautifulsoup4 4.6.3](https://img.shields.io/badge/beautifulsoup4-4.6.3-brightgreen.svg)](https://pypi.org/project/beautifulsoup4/)
 [![feedparser 5.2.1](https://img.shields.io/badge/feedparser-5.2.1-brightgreen.svg)](https://pypi.org/project/feedparser/)
 
-## Background
+## Background:
 Online news articles are incredibly valuable to data scientists seeking to understand long-term trends.
 One of the most difficult parts of analyzing these articles is parsing them. 
 Online news articles collected via script must be parsed from the HTML of the page they are hosted on. 
@@ -15,8 +15,8 @@ Online news articles collected via script must be parsed from the HTML of the pa
 
 This repository contains the Python code for collecting and parsing articles, as well as a sample driver.
 
-## Running the Application
-### Installing dependencies:
+## Running the Application:
+### Installing Dependencies:
 Ensure the following are installed on the machine you are running the application on:
 - Python 2.7 with Pip
 - Virtualenv for Python 2.7
@@ -26,7 +26,7 @@ Create a virtualenv and install the requirements from <i>requirements.txt</i> wi
 $ pip install -r "requirements.txt"
 ``` 
 
-### Running the driver:
+### Running the Driver:
 The driver can be run with Python:
 ```
 $ python driver.py
@@ -40,7 +40,7 @@ The driver can be run with an optional command line argument to view an article 
 $ python driver.py 3
 ```
 
-### Using the article collector:
+### Collecting Articles:
 The article collector can be used from Python code or the console if imported.
 It can be instantiated with a list of queries or given a list of queries later on.
 
@@ -51,7 +51,7 @@ It can be instantiated with a list of queries or given a list of queries later o
 >>> collector = Article_Collector(queries)
 ```
 
-#### Collecting Articles:
+#### Collecting the Articles:
 The <i>get_articles()</i> method collects and returns a list of articles. 
 It can be passed an optional list of queries to search that will override the list it was instantiated with.
 Printing the string representation of the article outputs nicely formatted article information.
@@ -83,7 +83,7 @@ executive officer. More than 86 million shares voted against the proposal at a s
 meeting in June, while fewer than 17 million voted in favor, Tesla said...
 ```
 
-#### Parsing Article Text:
+### Parsing Articles:
 Articles in HTML form can be parsed using the <i>parse_HTML()</i> method in the <i>Article_Parser</i> class. 
 The method may be run with a document to parse if the parser is not instantiated with a document.
 
