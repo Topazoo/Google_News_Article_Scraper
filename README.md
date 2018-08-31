@@ -35,6 +35,11 @@ $ python driver.py
 By default, the driver collects articles based on the queries "Fortune" and "Seeking Alpha", then
 prints the parsed text of the first article.
 
+The driver can be run with an optional command line argument to view an article at a specific index.
+```
+$ python driver.py 3
+```
+
 ### Using the article collector:
 The article collector can be used from Python code or the console if imported.
 It can be instantiated with a list of queries or given a list of queries later on.

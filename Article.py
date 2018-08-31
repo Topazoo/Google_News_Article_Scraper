@@ -18,6 +18,41 @@ class Article(object):
         self.date = str(date.tm_mon) + "-" + str(date.tm_mday) + "-" +  str(date.tm_year)
         
 
+    def clean_html(self, page):
+        ''' Clean up unwanted content from page text '''
+
+        # Remove Javascript
+        for script in page(["script", "style"]):
+            script.decompose()
+        for noscript in page(["noscript", "style"]):
+            noscript.decompose()
+
+        # Remove Header
+        for header in page(["head", "class"]):
+            header.decompose()
+        for header in page(["head", "style"]):
+            header.decompose()
+
+        # Remove Footer
+        for footer in page(["footer", "class"]):
+            footer.decompose()
+        for footer in page(["footer", "style"]):
+            footer.decompose()
+
+        # Remove buttons
+        for button in page(["button", "style"]):
+            button.decompose()
+
+        # Remove lists
+        for li in page(["li", "style"]):
+            li.decompose()
+
+        # Remove labels
+        for label in page(["label", "style"]):
+            label.decompose()
+
+        return page
+
     def get_text(self):
         ''' Parse text from story based on a stored url '''
 
@@ -26,12 +61,9 @@ class Article(object):
 
         # Parse the page with bs4
         page = BeautifulSoup(page_html, 'html.parser')
-        
-        # Remove Javascript
-        for script in page(["script", "style"]):
-            script.decompose()
+        cleaned_page = self.clean_html(page)
 
-        text = page.get_text()
+        text = cleaned_page.get_text()
 
         lines = (line.strip() for line in text.splitlines())
         # break multi-headlines into a line each
