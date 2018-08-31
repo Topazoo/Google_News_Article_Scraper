@@ -6,7 +6,7 @@
 
 import requests
 from bs4 import BeautifulSoup
-import unicodedata
+import re
 
 class Article(object):
     ''' Class to hold article information and fetch text '''
@@ -34,7 +34,7 @@ class Article(object):
             header.decompose()
 
         # Remove Footer
-        for footer in page(["footer", "class"]):
+        for footer in page.find_all("div", attrs={"class": re.compile("^footer*")}):
             footer.decompose()
         for footer in page(["footer", "style"]):
             footer.decompose()
@@ -50,6 +50,10 @@ class Article(object):
         # Remove labels
         for label in page(["label", "style"]):
             label.decompose()
+
+        # Remove sidebar
+        for sb in page.find_all("div", attrs={"class": re.compile("^sidebar*")}):
+            sb.decompose()
 
         return page
 
