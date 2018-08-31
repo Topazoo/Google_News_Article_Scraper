@@ -3,6 +3,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python 2.7](https://img.shields.io/badge/Python-2.7-brightgreen.svg)](https://www.python.org/downloads/release/python-2714/)
 [![requests 2.19.1](https://img.shields.io/badge/requests-2.19.1-brightgreen.svg)](https://pypi.org/project/requests/)
+[![beautifulsoup4 4.6.3](https://img.shields.io/badge/beautifulsoup4-4.6.3-brightgreen.svg)](https://pypi.org/project/beautifulsoup4/)
+[![feedparser 5.2.1](https://img.shields.io/badge/feedparser-5.2.1-brightgreen.svg)](https://pypi.org/project/feedparser/)
 
 ## Background
 Online news articles are incredibly valuable to data scientists seeking to understand long-term trends.
