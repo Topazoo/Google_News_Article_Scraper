@@ -83,7 +83,27 @@ executive officer. More than 86 million shares voted against the proposal at a s
 meeting in June, while fewer than 17 million voted in favor, Tesla said...
 ```
 
+#### Parsing Article Text:
+Articles in HTML form can be parsed using the <i>parse_HTML()</i> method in the <i>Article_Parser</i> class. 
+The method may be run with a document to parse if the parser is not instantiated with a document.
+
+```
+>>> import requests
+>>> from Article_Parser import Article_Parser
+>>> page_html = requests.get("http://fortune.com/2018/08/30/amazons-stock-breaks-above-2000-share-close-trillion-valuation/").text
+>>> parser = Article_Parser(page_html)
+>>> page_text = parser.parse_HTML()
+>>> print page_text
+Amazon Market Value Nears $1 Trillion as Shares Cross the $2,000 Milestone
+By
+Kevin Kelleher
+August 30, 2018
+Less than a month after Apple became the first U.S. company to be worth at least $1 trillion, Amazon is close to matching that feat.
+Amazon shares crossed the $2,000...
+```
+
 ## Files
 - <i>Article_Collector.py</i> - Class for collecting articles
+- <i>Article_Parser.py</i> - Parses article content from HTML
 - <i>Article.py</i> - Class for holding article information and fetching article text
     

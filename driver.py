@@ -20,7 +20,7 @@ def print_article_data(article):
     print article.get_text()
 
 # A list of queries to search Google News
-queries = ["Fortune", "Seeking Alpha"]
+queries = ["Fortune", "Slate"]
 article_number = 0
 
 # Get optional CLA - index of article to view
