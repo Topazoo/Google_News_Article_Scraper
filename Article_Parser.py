@@ -45,6 +45,8 @@ class Article_Parser(object):
 
         for footer in page.select('div[class*="footer"]'):
             footer.decompose()
+        for footer in page.select('div[id*="footer"]'):
+            footer.decompose()
         for footer in page(["footer", "style"]):
             footer.decompose()
 
@@ -53,6 +55,15 @@ class Article_Parser(object):
        
         for label in page(["label", "style"]):
             label.decompose()
+
+    def remove_fm(self, page):
+        ''' Remove forms '''
+
+        for form in page(["form", "style"]):
+            form.decompose()   
+
+        for form in page.select('div[class*="lightbox--search"]'):
+            form.decompose()     
 
     def remove_bt(self, page):
         ''' Remove buttons '''
@@ -65,18 +76,34 @@ class Article_Parser(object):
 
         for nav in page(["nav", "style"]):
             nav.decompose()
+
+        for nav in page.find_all(attrs={"class": re.compile("^nav--*")}):
+            nav.decompose()
+
         for nav in page(["navbar", "style"]):
             nav.decompose()
-        for nav in page(["nav", "class"]):
+
+        for nav in page.select('div[class="nav"]'):
             nav.decompose()
-        for nav in page(["navbar", "class"]):
+        
+        for nav in page.select('div[class*="navbar"]'):
             nav.decompose()
 
-    def remove_li(self, page):
-        ''' Remove lists '''
+        for nav in page.select('div[id*="right-rail"]'):
+            nav.decompose()
 
-        for li in page(["li", "style"]):
-            li.decompose()
+        for nav in page.select('div[class*="side-col"]'):
+            nav.decompose()
+
+        for nav in page.select('div[class*="tophat"]'):
+            nav.decompose()
+
+
+    def remove_fi(self, page):
+        ''' Remove financial information '''
+
+        for fi in page.find_all("div", attrs={"class": re.compile("^tip-*")}):
+            fi.decompose()
 
     def remove_sb(self, page):
         ''' Remove sidebar '''
@@ -84,10 +111,49 @@ class Article_Parser(object):
         for sb in page.find_all("div", attrs={"class": re.compile("^sidebar*")}):
             sb.decompose()
 
+    def remove_pg(self, page):
+        ''' Remove pagination '''
+
+        for pg in page.find_all("div", attrs={"class":"pagination"}):
+            pg.decompose()
+            
+        for pg in page.find_all("div", attrs={"id":"pagination"}):
+            pg.decompose()
+
     def remove_ad(self, page):
         ''' Remove ads ''' 
 
         for ad in page.find_all("div", attrs={"class": "component"}):
+            ad.decompose()
+
+        for ad in page.find_all("div", attrs={"class": "artRel"}):
+            ad.decompose()
+
+        for ad in page.find_all("div", attrs={"id": "feedbackPopup"}):
+            ad.decompose()
+
+        for ad in page.find_all("div", attrs={"class": "sharePopup"}):
+            ad.decompose()
+
+        for ad in page.select('div[class*="greyBox"]'):
+            ad.decompose()
+        
+        for ad in page.find_all("div", attrs={"id": re.compile("^art[A-Z].*")}):
+            ad.decompose()
+        
+        for ad in page.find_all("div", attrs={"class": re.compile("^art[A-Z].*")}):
+            ad.decompose()
+        
+        for ad in page.find_all("div", attrs={"id": re.compile("^bcPopup*")}):
+            ad.decompose()
+
+        for ad in page.select('div[id="related-articles"]'):
+            ad.decompose()
+
+        for ad in page.select('div[class="related_topics"]'):
+            ad.decompose()
+
+        for ad in page.select('div[id="author-commentPromo"]'):
             ad.decompose()
 
     def format_html(self, page):
@@ -126,7 +192,10 @@ class Article_Parser(object):
         self.remove_sb(html) # Sidebars
         self.remove_ft(html) # Footers
         self.remove_bt(html) # Buttons
+        self.remove_fm(html) # Forms
         self.remove_lb(html) # Labels
+        self.remove_fi(html) # Financial
+        self.remove_pg(html) # Pagination
 
         # Perform final formatting and get text
         text = self.format_html(html)
