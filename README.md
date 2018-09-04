@@ -111,6 +111,7 @@ Unknown
 >>> articles = collector.clean_no_subject(articles)
 >>> print articles[1].subject
 Tesla 
+```
 
 ### Parsing Articles:
 Articles in HTML form can be parsed using the <i>parse_HTML()</i> method in the <i>Article_Parser</i> class. 
