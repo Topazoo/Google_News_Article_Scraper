@@ -12,7 +12,9 @@ def print_article_data(article):
     ''' Prints article info and text '''
 
     # String representation of article pretty-prints data
+    article.find_subject(breadth=5)
     print str(article)
+
 
     print ""
 

@@ -5,6 +5,7 @@
 [![requests 2.19.1](https://img.shields.io/badge/requests-2.19.1-brightgreen.svg)](https://pypi.org/project/requests/)
 [![beautifulsoup4 4.6.3](https://img.shields.io/badge/beautifulsoup4-4.6.3-brightgreen.svg)](https://pypi.org/project/beautifulsoup4/)
 [![feedparser 5.2.1](https://img.shields.io/badge/feedparser-5.2.1-brightgreen.svg)](https://pypi.org/project/feedparser/)
+[![nltk 3.3](https://img.shields.io/badge/nltk-3.3-brightgreen.svg)](https://pypi.org/project/nltk/)
 
 ## Background:
 Online news articles are incredibly valuable to data scientists seeking to understand long-term trends.
@@ -18,18 +19,20 @@ This repository contains the Python code for collecting and parsing articles, as
 ## Running the Application:
 ### Installing Dependencies:
 Ensure the following are installed on the machine you are running the application on:
-- Python 2.7 with Pip
-- Virtualenv for Python 2.7
+- Python 2.7 with pip
+- virtualenv for Python 2.7
 
-Create a virtualenv and install the requirements from <i>requirements.txt</i> with Pip
+Create a virtualenv and install the requirements from <i>requirements.txt</i> with pip
 ```
-$ pip install -r "requirements.txt"
+$ virtualenv venv
+$ source venv/bin/activate
+(venv) $ pip install -r "requirements.txt"
 ``` 
 
 ### Running the Driver:
 The driver can be run with Python:
 ```
-$ python driver.py
+(venv) $ python driver.py
 ```
 
 By default, the driver collects articles based on the queries "Fortune" and "Seeking Alpha", then
@@ -37,7 +40,7 @@ prints the parsed text of the first article.
 
 The driver can be run with an optional command line argument to view an article at a specific index.
 ```
-$ python driver.py 3
+(venv) $ python driver.py 3
 ```
 
 ### Collecting Articles:
@@ -63,6 +66,7 @@ Printing the string representation of the article outputs nicely formatted artic
  ----------- Article -----------
 Source: Tesla
 Title: BlackRock voted to replace Tesla's Musk with independent chairman
+Subject: Tesla
 Date: 8-31-2018
 URL: https://www.reuters.com/article/us-tesla-musk-blackrock/blackrock-voted-to-replace-teslas-musk-with-independent-board-chair-idUSKCN1LG01R
  -------------------------------
@@ -81,6 +85,16 @@ according to BlackRock’s filing with the U.S. Securities and Exchange Commissi
 The proposal, which was defeated, would not have affected Musk’s standing as Tesla’s chief 
 executive officer. More than 86 million shares voted against the proposal at a shareholder 
 meeting in June, while fewer than 17 million voted in favor, Tesla said...
+```
+
+#### Finding the Article Subject:
+The program can attempt to find the subject of the article with the <i>get_subject()</i> method.
+The method takes an optional <i>breadth</i> argument that determines how loose the search is.
+Higher values = a looser search.
+```
+>>> subject = article.get_subject(breadth=5)
+>>> print subject
+Tesla
 ```
 
 ### Parsing Articles:
@@ -106,4 +120,5 @@ Amazon shares crossed the $2,000...
 - <i>Article_Collector.py</i> - Class for collecting articles
 - <i>Article_Parser.py</i> - Parses article content from HTML
 - <i>Article.py</i> - Class for holding article information and fetching article text
+- <i>requirements.txt</i> - Program requirements
     
