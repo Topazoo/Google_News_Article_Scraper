@@ -19,6 +19,7 @@ class Article(object):
         self.date = str(date.tm_mon) + "-" + str(date.tm_mday) + "-" +  str(date.tm_year)
 
         self.text = None
+        self.subject = None
 
     def find_subject(self, breadth=7):
         ''' Attempt to determine the subject of an article '''
@@ -37,8 +38,7 @@ class Article(object):
                     self.subject = noun
                     return noun
 
-        self.subject = "Unknown"
-        return "Unknown"
+        return None
 
     def get_keywords(self, text):
         ''' Get and return a list of proper nouns from article '''

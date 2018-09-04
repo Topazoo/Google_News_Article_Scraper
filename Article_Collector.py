@@ -68,6 +68,19 @@ class Article_Collector(object):
 
         return articles
 
+    def get_article_info(self, articles):
+        ''' Get text and subject for a list of articles '''
+
+        for article in articles:
+            article.get_text()
+            article.find_subject()
+
+    def clean_no_subject(self, articles):
+        ''' Remove articles with no subject '''
+
+        return [article for article in articles if article.subject != None]
+
+
 
 
 

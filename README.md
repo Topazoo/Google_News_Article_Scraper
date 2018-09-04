@@ -97,6 +97,21 @@ Higher values = a looser search.
 Tesla
 ```
 
+#### Collecting Information in Bulk:
+Text and subjects for a list of articles can be collected with the <i>get_article_info()</i>
+method.
+Articles without subjects can be filtered with the <i>clean_no_subject()</i> method. This method takes
+a list of articles and returns a list of only articles with subjects.
+```
+>>> collector.get_article_info(articles)
+>>> print articles[0].subject
+Tesla
+>>> print articles[1].subject
+Unknown
+>>> articles = collector.clean_no_subject(articles)
+>>> print articles[1].subject
+Tesla 
+
 ### Parsing Articles:
 Articles in HTML form can be parsed using the <i>parse_HTML()</i> method in the <i>Article_Parser</i> class. 
 The method may be run with a document to parse if the parser is not instantiated with a document.

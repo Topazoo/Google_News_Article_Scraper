@@ -12,7 +12,6 @@ def print_article_data(article):
     ''' Prints article info and text '''
 
     # String representation of article pretty-prints data
-    article.find_subject(breadth=5)
     print str(article)
 
 
@@ -32,8 +31,10 @@ if len(sys.argv) > 1:
 # Instantiate a collector with the queries
 collector = Article_Collector(queries)
 
-# Collect the article information
+# Collect the article URLs
 articles = collector.get_articles()
+# Get article subject and text
+collector.get_article_info(articles)
 
 # Demo print first article or CLA input article index
 print_article_data(articles[article_number])
